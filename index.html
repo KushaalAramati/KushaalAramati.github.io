@@ -1,469 +1,336 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Aramati Kushaal Reddy — Portfolio</title>
-<meta name="description" content="Portfolio of Aramati Kushaal Reddy — researcher, developer, and 3D designer at UW–Madison.">
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
-<style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  :root {
-    --bg: #F5F2EC; --bg2: #EDE9E0; --text: #1A1814; --muted: #6B6760;
-    --accent: #2D4A3E; --accent2: #C17B3F; --border: rgba(26,24,20,0.12);
-    --white: #FDFCF9; --serif: 'DM Serif Display', Georgia, serif;
-    --sans: 'DM Sans', system-ui, sans-serif;
-  }
-  html { scroll-behavior: smooth; }
-  body { font-family: var(--sans); background: var(--bg); color: var(--text); min-height: 100vh; }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aramati Kushaal Reddy — Researcher & Builder</title>
+  <meta name="description" content="Aramati Kushaal Reddy — UW-Madison student working across bioinformatics, data mining, AI prototyping, and 3D design. Research intern building scoring and visualization workflows for CRISPR guide-RNA selection." />
+  <meta name="author" content="Aramati Kushaal Reddy" />
 
-  /* NAV */
-  nav {
-    position: sticky; top: 0; z-index: 100; background: var(--bg);
-    border-bottom: 1px solid var(--border);
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 0 2.5rem; height: 60px;
-  }
-  .nav-logo { font-family: var(--serif); font-size: 1.2rem; color: var(--text); cursor: pointer; text-decoration: none; }
-  .nav-links { display: flex; gap: 2rem; list-style: none; }
-  .nav-links a {
-    font-size: 0.875rem; font-weight: 400; color: var(--muted);
-    text-decoration: none; letter-spacing: 0.04em; text-transform: uppercase;
-    transition: color 0.2s; cursor: pointer;
-  }
-  .nav-links a:hover, .nav-links a.active { color: var(--text); }
-  .nav-links a.active { font-weight: 500; }
+  <!-- Open Graph -->
+  <meta property="og:title" content="Aramati Kushaal Reddy" />
+  <meta property="og:description" content="Researcher & builder across bioinformatics, data mining, AI prototyping, and 3D design." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://kushaalaramati.github.io" />
 
-  /* PAGES */
-  .page { display: none; animation: fadeIn 0.35s ease; }
-  .page.active { display: block; }
-  @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
-
-  /* HOME */
-  .home-hero {
-    min-height: calc(100vh - 60px);
-    display: grid; grid-template-columns: 1fr 1fr; align-items: center;
-    padding: 4rem 2.5rem 2rem; gap: 3rem; max-width: 1100px; margin: 0 auto;
-  }
-  .hero-tag {
-    display: inline-block; font-size: 0.75rem; font-weight: 500;
-    letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent2);
-    border: 1px solid var(--accent2); padding: 4px 12px; border-radius: 100px;
-    margin-bottom: 1.5rem;
-  }
-  .hero-name { font-family: var(--serif); font-size: clamp(2.4rem, 4.5vw, 3.8rem); line-height: 1.05; margin-bottom: 1.25rem; }
-  .hero-name em { font-style: italic; color: var(--accent); }
-  .hero-bio { font-size: 1.05rem; color: var(--muted); line-height: 1.75; max-width: 440px; margin-bottom: 2.5rem; }
-  .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
-  .btn-primary {
-    background: var(--accent); color: var(--white); padding: 0.75rem 1.75rem;
-    border-radius: 4px; font-size: 0.875rem; font-weight: 500; border: none;
-    cursor: pointer; transition: opacity 0.2s;
-  }
-  .btn-primary:hover { opacity: 0.85; }
-  .btn-outline {
-    background: transparent; color: var(--text); padding: 0.75rem 1.75rem;
-    border-radius: 4px; font-size: 0.875rem; border: 1.5px solid var(--border);
-    cursor: pointer; transition: border-color 0.2s;
-  }
-  .btn-outline:hover { border-color: var(--text); }
-  .hero-right { display: flex; justify-content: center; align-items: center; }
-  .hero-card {
-    width: 300px; height: 400px; background: var(--bg2);
-    border-radius: 12px; border: 1px solid var(--border);
-    display: flex; flex-direction: column; align-items: center;
-    justify-content: center; gap: 0.85rem; position: relative; overflow: hidden;
-  }
-  .hero-avatar {
-    width: 90px; height: 90px; border-radius: 50%; background: var(--accent);
-    display: flex; align-items: center; justify-content: center;
-    font-family: var(--serif); font-size: 2rem; color: var(--white);
-  }
-  .hero-card-name { font-family: var(--serif); font-size: 1.25rem; text-align: center; padding: 0 1rem; }
-  .hero-card-title { font-size: 0.82rem; color: var(--muted); text-align: center; padding: 0 1.5rem; line-height: 1.5; }
-  .hero-card-badges { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; padding: 0 1.25rem; margin-top: 0.25rem; }
-  .hero-badge {
-    font-size: 0.7rem; padding: 3px 10px; border-radius: 100px;
-    background: rgba(45,74,62,0.1); color: var(--accent); border: 1px solid rgba(45,74,62,0.2);
-  }
-  .deco1 { position: absolute; bottom: -30px; right: -30px; width: 120px; height: 120px; border-radius: 50%; background: rgba(193,123,63,0.1); }
-  .deco2 { position: absolute; top: -20px; left: -20px; width: 80px; height: 80px; border-radius: 50%; background: rgba(45,74,62,0.08); }
-
-  /* PAGE SHELL */
-  .page-shell { max-width: 900px; margin: 0 auto; padding: 4rem 2.5rem 6rem; }
-  .page-header { margin-bottom: 3.5rem; }
-  .section-label { font-size: 0.75rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent2); margin-bottom: 0.75rem; }
-  .page-header h1 { font-family: var(--serif); font-size: clamp(2rem, 4vw, 3rem); line-height: 1.1; }
-  .page-header p { margin-top: 1rem; font-size: 1rem; color: var(--muted); line-height: 1.7; max-width: 560px; }
-
-  /* ABOUT */
-  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
-  .about-text p { font-size: 1rem; color: var(--muted); line-height: 1.85; margin-bottom: 1.25rem; }
-  .about-text p strong { color: var(--text); font-weight: 500; }
-  .skills-section { margin-top: 2rem; }
-  .skills-section h4 { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent2); font-weight: 500; margin-bottom: 0.75rem; }
-  .skills-list { display: flex; flex-wrap: wrap; gap: 8px; }
-  .skill-tag { font-size: 0.8rem; padding: 5px 13px; border-radius: 100px; background: var(--bg2); border: 1px solid var(--border); color: var(--muted); }
-  .sidebar-card { background: var(--white); border: 1px solid var(--border); border-radius: 10px; padding: 1.25rem 1.5rem; margin-bottom: 1.25rem; }
-  .sidebar-card h4 { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent2); font-weight: 500; margin-bottom: 0.6rem; }
-  .sidebar-card p { font-size: 0.875rem; color: var(--muted); line-height: 1.65; }
-  .leadership-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 2rem; }
-  .lead-card { background: var(--white); border: 1px solid var(--border); border-radius: 8px; padding: 1rem 1.25rem; }
-  .lead-card h4 { font-size: 0.875rem; font-weight: 500; margin-bottom: 4px; }
-  .lead-card p { font-size: 0.8rem; color: var(--muted); }
-
-  /* EXPERIENCE */
-  .exp-item { display: grid; grid-template-columns: 150px 1fr; gap: 1.5rem; margin-bottom: 2.5rem; position: relative; }
-  .exp-item::after { content: ''; position: absolute; left: 150px; top: 10px; bottom: -2.5rem; width: 1px; background: var(--border); }
-  .exp-item:last-child::after { display: none; }
-  .exp-date { font-size: 0.78rem; color: var(--muted); padding-top: 3px; text-align: right; line-height: 1.5; }
-  .exp-content { padding-left: 1.5rem; position: relative; }
-  .exp-content::before { content: ''; position: absolute; left: -5px; top: 6px; width: 9px; height: 9px; border-radius: 50%; background: var(--accent); border: 2px solid var(--bg); }
-  .exp-role { font-size: 1rem; font-weight: 500; }
-  .exp-company { font-size: 0.875rem; color: var(--accent); margin: 3px 0 8px; }
-  .exp-desc { font-size: 0.875rem; color: var(--muted); line-height: 1.75; }
-  .exp-desc li { margin-bottom: 4px; margin-left: 1rem; }
-
-  /* WORK */
-  .work-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 3rem; }
-  .work-card { background: var(--white); border: 1px solid var(--border); border-radius: 10px; padding: 1.75rem; position: relative; overflow: hidden; transition: transform 0.2s, box-shadow 0.2s; }
-  .work-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.07); }
-  .work-card-num { font-family: var(--serif); font-size: 2rem; color: var(--bg2); position: absolute; top: 1rem; right: 1.25rem; font-style: italic; }
-  .work-tag { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent2); margin-bottom: 0.75rem; }
-  .work-card h3 { font-family: var(--serif); font-size: 1.15rem; margin-bottom: 0.6rem; }
-  .work-card p { font-size: 0.875rem; color: var(--muted); line-height: 1.65; }
-  .work-card .stack { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 1rem; }
-  .stack-tag { font-size: 0.72rem; padding: 3px 9px; border-radius: 4px; background: var(--bg2); color: var(--muted); border: 1px solid var(--border); }
-
-  /* CONTACT */
-  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
-  .contact-info h3 { font-family: var(--serif); font-size: 1.4rem; margin-bottom: 1rem; }
-  .contact-info p { font-size: 0.95rem; color: var(--muted); line-height: 1.75; margin-bottom: 2rem; }
-  .contact-item { display: flex; align-items: center; gap: 12px; margin-bottom: 1rem; }
-  .contact-icon { width: 36px; height: 36px; border-radius: 8px; background: var(--bg2); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 13px; flex-shrink: 0; color: var(--muted); font-weight: 500; }
-  .contact-item span { font-size: 0.875rem; color: var(--muted); }
-  .contact-form { display: flex; flex-direction: column; gap: 1rem; }
-  .form-group { display: flex; flex-direction: column; gap: 6px; }
-  .form-group label { font-size: 0.75rem; font-weight: 500; color: var(--muted); letter-spacing: 0.05em; text-transform: uppercase; }
-  .form-group input, .form-group textarea {
-    font-family: var(--sans); font-size: 0.9rem; color: var(--text);
-    background: var(--white); border: 1px solid var(--border);
-    border-radius: 6px; padding: 0.7rem 1rem; outline: none;
-    transition: border-color 0.2s; resize: none; width: 100%;
-  }
-  .form-group input:focus, .form-group textarea:focus { border-color: var(--accent); }
-  .form-group textarea { min-height: 110px; }
-  .form-note { font-size: 0.75rem; color: var(--muted); text-align: center; margin-top: 0.25rem; }
-
-  @media (max-width: 680px) {
-    .home-hero { grid-template-columns: 1fr; min-height: auto; padding-top: 2.5rem; }
-    .hero-right { display: none; }
-    .about-grid, .work-grid, .contact-grid, .leadership-grid { grid-template-columns: 1fr; }
-    .exp-item { grid-template-columns: 1fr; }
-    .exp-item::after { display: none; }
-    .exp-date { text-align: left; }
-    .exp-content { padding-left: 0; }
-    .exp-content::before { display: none; }
-    nav { padding: 0 1.25rem; }
-    .nav-logo { font-size: 1rem; }
-    .page-shell { padding: 2.5rem 1.25rem 4rem; }
-    .nav-links { gap: 1rem; }
-  }
-</style>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧬</text></svg>" />
 </head>
 <body>
+  <!-- Animated background -->
+  <div class="bg-grid" aria-hidden="true"></div>
+  <div class="bg-glow" aria-hidden="true"></div>
 
-<nav>
-  <a class="nav-logo" onclick="showPage('home')">Aramati Kushaal Reddy</a>
-  <ul class="nav-links">
-    <li><a onclick="showPage('about')" id="nav-about">About</a></li>
-    <li><a onclick="showPage('experience')" id="nav-experience">Experience</a></li>
-    <li><a onclick="showPage('work')" id="nav-work">Work</a></li>
-    <li><a onclick="showPage('contact')" id="nav-contact">Contact</a></li>
-  </ul>
-</nav>
+  <!-- Nav -->
+  <header class="nav" id="nav">
+    <a href="#top" class="nav__brand">AKR<span class="nav__dot">.</span></a>
+    <nav class="nav__links" aria-label="Primary">
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <button class="nav__toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
 
-<!-- HOME -->
-<div class="page active" id="page-home">
-  <div class="home-hero">
-    <div class="hero-left">
-      <div class="hero-tag">UW–Madison · Class of 2029</div>
-      <h1 class="hero-name">Hi, I'm<br><em>Kushaal Reddy</em></h1>
-      <p class="hero-bio">A researcher, builder, and aspiring scientist at the intersection of biology, data, and technology. From synthesizing molecules to mining bioinformatics data — I thrive where disciplines collide.</p>
-      <div class="hero-ctas">
-        <button class="btn-primary" onclick="showPage('work')">View My Projects</button>
-        <button class="btn-outline" onclick="showPage('contact')">Get In Touch</button>
+  <main id="top">
+    <!-- Hero -->
+    <section class="hero">
+      <p class="hero__eyebrow reveal">University of Wisconsin–Madison</p>
+      <h1 class="hero__name reveal">
+        Aramati <span class="grad">Kushaal Reddy</span>
+      </h1>
+      <p class="hero__tag reveal">
+        I connect research needs with usable software — across
+        <span class="rotator" id="rotator">bioinformatics</span>
+      </p>
+      <p class="hero__lede reveal">
+        Undergraduate at UW–Madison with hands-on experience in data mining,
+        bioinformatics workflows, research automation, AI product prototyping,
+        and 3D design. Currently building scoring and visualization tools for
+        CRISPR guide-RNA selection.
+      </p>
+      <div class="hero__cta reveal">
+        <a class="btn btn--primary" href="#projects">View work</a>
+        <a class="btn btn--ghost" href="#contact">Get in touch</a>
       </div>
-    </div>
-    <div class="hero-right">
-      <div class="hero-card">
-        <div class="deco2"></div>
-        <div class="hero-avatar">AKR</div>
-        <div class="hero-card-name">Aramati Kushaal Reddy</div>
-        <div class="hero-card-title">Researcher · Developer · 3D Designer<br>University of Wisconsin–Madison</div>
-        <div class="hero-card-badges">
-          <span class="hero-badge">Bioinformatics</span>
-          <span class="hero-badge">Python</span>
-          <span class="hero-badge">R</span>
-          <span class="hero-badge">3D Prototyping</span>
-          <span class="hero-badge">Published Author</span>
+      <div class="hero__meta reveal">
+        <a href="https://github.com/aramatikushaal" target="_blank" rel="noopener">GitHub ↗</a>
+        <a href="https://www.linkedin.com/in/aramati-kushaal-reddy" target="_blank" rel="noopener">LinkedIn ↗</a>
+        <a href="mailto:aramatikushaalreddy@gmail.com">Email ↗</a>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="section">
+      <div class="section__head reveal">
+        <span class="section__num">01</span>
+        <h2>About</h2>
+      </div>
+      <div class="about">
+        <div class="about__text reveal">
+          <p>
+            I'm an undergraduate at the University of Wisconsin–Madison who likes
+            being where research and software meet. Over the past few years I've
+            worked across wet-lab chemistry, single-cell bioinformatics, data-mining
+            automation, AI prototyping, and resin/filament 3D printing.
+          </p>
+          <p>
+            The common thread: taking messy research needs and turning them into
+            structured data, usable tools, and clear outputs. Right now that means
+            <strong>QGuide</strong> — ranking CRISPR guide-RNAs by on-target
+            performance, off-target risk, and predicted editing outcomes.
+          </p>
+          <p>
+            I'm a co-author on a <em>Tetrahedron</em> publication and a second paper
+            currently in review.
+          </p>
         </div>
-        <div class="deco1"></div>
+        <ul class="about__facts">
+          <li class="reveal"><span class="num" data-count="7">0</span><span class="lbl">Research internships</span></li>
+          <li class="reveal"><span class="num" data-count="5">0</span><span class="lbl">Projects shipped</span></li>
+          <li class="reveal"><span class="num" data-count="2">0</span><span class="lbl">Publications</span></li>
+          <li class="reveal"><span class="num" data-count="4">0</span><span class="lbl">Leadership roles</span></li>
+        </ul>
       </div>
-    </div>
-  </div>
-</div>
+    </section>
 
-<!-- ABOUT -->
-<div class="page" id="page-about">
-  <div class="page-shell">
-    <div class="page-header">
-      <div class="section-label">Who I am</div>
-      <h1>About Me</h1>
-      <p>A multidisciplinary researcher and builder with roots in chemistry, biology, and technology.</p>
-    </div>
-    <div class="about-grid">
-      <div class="about-text">
-        <p>I'm Kushaal — a freshman at the <strong>University of Wisconsin–Madison</strong>, originally from Hyderabad, India. My academic journey has been anything but conventional: I've worked in organic chemistry labs, built data tools for research teams, designed 3D-printable lab instruments, and analyzed cancer cell data from real animal clinical trials.</p>
-        <p>What drives me is a passion for <strong>bridging the gap between scientific research and practical technology</strong>. I believe the most interesting problems live at the intersections — between biology and computation, between lab work and software, between ideas and tangible prototypes.</p>
-        <p>I'm a <strong>published co-author</strong> in the Tetrahedron journal and have a second paper currently under review. I've interned across four different research labs and organizations before starting university, building a depth of experience rarely seen at the undergraduate level.</p>
-        <div class="skills-section">
-          <h4>Technical Skills</h4>
-          <div class="skills-list">
-            <span class="skill-tag">Python</span>
-            <span class="skill-tag">MySQL</span>
-            <span class="skill-tag">R</span>
-            <span class="skill-tag">C (Basic)</span>
-            <span class="skill-tag">Front-end Dev</span>
-            <span class="skill-tag">Shapr3D</span>
-            <span class="skill-tag">Blender</span>
-            <span class="skill-tag">Chitubox</span>
-            <span class="skill-tag">Wix</span>
-            <span class="skill-tag">Seurat</span>
-            <span class="skill-tag">Bioconductor</span>
-            <span class="skill-tag">Data Mining</span>
-            <span class="skill-tag">3D Prototyping</span>
-            <span class="skill-tag">Report Generation</span>
+    <!-- Experience -->
+    <section id="experience" class="section">
+      <div class="section__head reveal">
+        <span class="section__num">02</span>
+        <h2>Experience</h2>
+      </div>
+      <ol class="timeline">
+        <li class="tl reveal">
+          <div class="tl__dot"></div>
+          <div class="tl__date">Ongoing</div>
+          <div class="tl__body">
+            <h3>Research Intern <span class="tl__org">— C.R. Rao AIMSCS</span></h3>
+            <p class="tl__sub">with Dr. Swami Naidu</p>
+            <ul>
+              <li>Working on <strong>QGuide</strong>, combining genetics, DNA editing, guide-RNA selection, and quantum-computing concepts.</li>
+              <li>Building scoring &amp; visualization workflows that rank gRNAs by on-target performance, off-target risk, and predicted editing outcomes.</li>
+            </ul>
+          </div>
+        </li>
+        <li class="tl reveal">
+          <div class="tl__dot"></div>
+          <div class="tl__date">Dec 2025 – Feb 2026</div>
+          <div class="tl__body">
+            <h3>Research Intern <span class="tl__org">— UAB (Univ. of Alabama at Birmingham)</span></h3>
+            <p class="tl__sub">with Asst. Prof. Dr. P.N. Ganji</p>
+            <ul>
+              <li>Cell culture and bioinformatics data collection for animal clinical-trial datasets.</li>
+              <li>Cleaned and modified clinical-trial data to help identify cancer-causing cells and tumor clusters.</li>
+              <li>Used advanced R workflows including <strong>Seurat</strong> and <strong>Bioconductor</strong> for biological data analysis.</li>
+            </ul>
+          </div>
+        </li>
+        <li class="tl reveal">
+          <div class="tl__dot"></div>
+          <div class="tl__date">Dec 2023, May–Jun 2024</div>
+          <div class="tl__body">
+            <h3>Research / Technical Intern <span class="tl__org">— Univ. of Hyderabad, Systems Biology</span></h3>
+            <ul>
+              <li>Developed a data-mining and automated report-generation tool for lab research workflows.</li>
+              <li>Built a user-facing interface using <strong>Python, MySQL, and Wix</strong> to make research information easier to access.</li>
+            </ul>
+          </div>
+        </li>
+        <li class="tl reveal">
+          <div class="tl__dot"></div>
+          <div class="tl__date">Dec 2022, May–Jun 2023</div>
+          <div class="tl__body">
+            <h3>Research Intern <span class="tl__org">— Univ. of Hyderabad, School of Chemistry</span></h3>
+            <ul>
+              <li>Stereoselective synthesis projects involving L-Arabinose derivatives.</li>
+              <li>Contributed to research that led to a publication in <em>Tetrahedron</em>.</li>
+            </ul>
+          </div>
+        </li>
+        <li class="tl reveal">
+          <div class="tl__dot"></div>
+          <div class="tl__date">May–Jun 2022</div>
+          <div class="tl__body">
+            <h3>Intern <span class="tl__org">— Amigos Molecular Solutions Pvt. Ltd.</span></h3>
+            <ul>
+              <li>Synthesis of aryl phthalides and polyaryl acetates.</li>
+            </ul>
+          </div>
+        </li>
+        <li class="tl reveal">
+          <div class="tl__dot"></div>
+          <div class="tl__date">May–Jun 2021</div>
+          <div class="tl__body">
+            <h3>Intern <span class="tl__org">— UR Advanced Therapeutics Pvt. Ltd.</span></h3>
+            <ul>
+              <li>Designed 3D models for biological applications and lab tools using filament and resin workflows.</li>
+              <li>Prototyped on <strong>ELEGOO Saturn 2</strong> and <strong>CREALITY Ender-5 Pro</strong>.</li>
+            </ul>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects" class="section">
+      <div class="section__head reveal">
+        <span class="section__num">03</span>
+        <h2>Projects</h2>
+      </div>
+      <div class="cards">
+        <article class="card reveal">
+          <div class="card__top">
+            <span class="card__icon">🧬</span>
+            <span class="card__tag">CRISPR · Quantum</span>
+          </div>
+          <h3>QGuide</h3>
+          <p>Quantum + CRISPR guide-RNA selection. A gRNA-selection concept for DNA-editing workflows that fuses CRISPR scoring, bioinformatics logic, and quantum-optimization ideas.</p>
+          <div class="card__stack"><span>Python</span><span>Bioinformatics</span><span>Optimization</span></div>
+        </article>
+        <article class="card reveal">
+          <div class="card__top">
+            <span class="card__icon">🏋️</span>
+            <span class="card__tag">AI · Computer Vision</span>
+          </div>
+          <h3>GymInAI</h3>
+          <p>AI fitness form-feedback app. Analyzes live or recorded workout videos for body pose, exercise recognition, and real-time form feedback.</p>
+          <div class="card__stack"><span>Pose Estimation</span><span>Next.js</span><span>AI</span></div>
+        </article>
+        <article class="card reveal">
+          <div class="card__top">
+            <span class="card__icon">🛍️</span>
+            <span class="card__tag">AI · Discovery</span>
+          </div>
+          <h3>ShopSignal</h3>
+          <p>AI product-discovery tool. Shopping intelligence focused on product matching, ranking, listing comparison, and user-facing buying signals.</p>
+          <div class="card__stack"><span>Ranking</span><span>NLP</span><span>Data</span></div>
+        </article>
+        <article class="card reveal">
+          <div class="card__top">
+            <span class="card__icon">🔗</span>
+            <span class="card__tag">Data · Tooling</span>
+          </div>
+          <h3>BioConnect</h3>
+          <p>Data-mining &amp; reporting interface. Organizes research information into clearer, user-friendly outputs with an accessible front end.</p>
+          <div class="card__stack"><span>Python</span><span>MySQL</span><span>Wix</span></div>
+        </article>
+        <article class="card reveal">
+          <div class="card__top">
+            <span class="card__icon">🖨️</span>
+            <span class="card__tag">3D · Hardware</span>
+          </div>
+          <h3>3D Design for Bio</h3>
+          <p>3D-printable models for microfluidics, cell-culture tools, and synthetic cornea prototyping — from modeling through slicing and print prep.</p>
+          <div class="card__stack"><span>Shapr3D</span><span>Blender</span><span>Chitubox</span></div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills" class="section">
+      <div class="section__head reveal">
+        <span class="section__num">04</span>
+        <h2>Skills &amp; Toolkit</h2>
+      </div>
+      <div class="skills">
+        <div class="skills__group reveal">
+          <h3>Programming</h3>
+          <div class="chips">
+            <span>Java</span><span>Python</span><span>MySQL</span><span>R</span><span>C</span><span>Front-end (basic)</span>
+          </div>
+        </div>
+        <div class="skills__group reveal">
+          <h3>Research &amp; Data</h3>
+          <div class="chips">
+            <span>Data mining</span><span>Bioinformatics</span><span>Seurat</span><span>Bioconductor</span><span>Report generation</span><span>UI development</span><span>AI prototyping</span>
+          </div>
+        </div>
+        <div class="skills__group reveal">
+          <h3>Design &amp; Fabrication</h3>
+          <div class="chips">
+            <span>Shapr3D</span><span>Blender</span><span>Chitubox</span><span>Wix</span><span>ELEGOO Saturn 2</span><span>Ender-5 Pro</span>
           </div>
         </div>
       </div>
-      <div>
-        <div class="sidebar-card">
-          <h4>Education</h4>
-          <p><strong style="color:var(--text)">University of Wisconsin–Madison</strong><br>Undergraduate Freshman</p>
-          <br>
-          <p><strong style="color:var(--text)">Delhi Public School, Hyderabad</strong><br>Class 11–12</p>
-          <br>
-          <p><strong style="color:var(--text)">Wisewoods International School</strong><br>Class 9–10</p>
-        </div>
-        <div class="sidebar-card">
-          <h4>Based in</h4>
-          <p>Madison, Wisconsin, USA<br><span style="color:var(--accent2)">Originally from Hyderabad, India</span></p>
-        </div>
-        <div class="sidebar-card">
-          <h4>Publications</h4>
-          <p style="margin-bottom:0.75rem"><strong style="color:var(--text)">Tetrahedron Journal</strong> — Stereoselective synthesis of L-Arabinose derivatives (Co-authored with Prof. Rame Sridhar, Univ. of Hyderabad)</p>
-          <p><strong style="color:var(--text)">American Cancer Research Society</strong> — Second paper currently in review (Amigos Molecular Solutions)</p>
-        </div>
-      </div>
-    </div>
+    </section>
 
-    <hr style="border:none;border-top:1px solid var(--border);margin:3rem 0 2rem">
-    <div class="section-label">Leadership</div>
-    <div class="leadership-grid">
-      <div class="lead-card"><h4>President &amp; Co-Founder</h4><p>Tech Club · Delhi Public School</p></div>
-      <div class="lead-card"><h4>Co-President &amp; Co-Founder</h4><p>Business Club · Delhi Public School</p></div>
-      <div class="lead-card"><h4>Literary Secretary</h4><p>Prefectural Board</p></div>
-      <div class="lead-card"><h4>USG of Logistics</h4><p>DPSHMUN Secretariat</p></div>
-    </div>
-  </div>
-</div>
-
-<!-- EXPERIENCE -->
-<div class="page" id="page-experience">
-  <div class="page-shell">
-    <div class="page-header">
-      <div class="section-label">Where I've worked</div>
-      <h1>Research Experience</h1>
-      <p>Five internships across biology, chemistry, and computational research — all before finishing my first year of university.</p>
-    </div>
-    <div class="exp-timeline">
-
-      <div class="exp-item">
-        <div class="exp-date">Dec 2025 –<br>Feb 2026</div>
-        <div class="exp-content">
-          <div class="exp-role">Research Intern</div>
-          <div class="exp-company">University of Alabama–Birmingham · Dr. P.N. Ganji's Lab</div>
-          <ul class="exp-desc">
-            <li>Worked on cell culture and bioinformatics data collection and modification analytics on real animal clinical trials data</li>
-            <li>Refined data from animal clinical trials to identify cancer-causing cells and detect clusters among tumors</li>
-            <li>Applied advanced R packages including Seurat and Bioconductor for single-cell analysis workflows</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="exp-item">
-        <div class="exp-date">Dec 2023;<br>May–Jun 2024</div>
-        <div class="exp-content">
-          <div class="exp-role">Research / Technical Project Intern</div>
-          <div class="exp-company">University of Hyderabad · Dr. Vivek Thakur's Lab (Systems Biology)</div>
-          <ul class="exp-desc">
-            <li>Developed a tool for data mining and automated report generation</li>
-            <li>Built a full interface using Python, MySQL, and Wix for lab data workflows</li>
-            <li>Bridged backend data handling with a usable front-end interface for researchers</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="exp-item">
-        <div class="exp-date">Dec 2022;<br>May–Jun 2023</div>
-        <div class="exp-content">
-          <div class="exp-role">Research Intern</div>
-          <div class="exp-company">University of Hyderabad · Prof. Ramu Sreedhar Perali's Lab (Chemistry)</div>
-          <ul class="exp-desc">
-            <li>Contributed to stereoselective synthesis projects involving L-Arabinose derivatives</li>
-            <li>Work contributed to a publication in the <em>Tetrahedron</em> research journal</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="exp-item">
-        <div class="exp-date">May–Jun 2022</div>
-        <div class="exp-content">
-          <div class="exp-role">Intern</div>
-          <div class="exp-company">Amigos Molecular Solutions Pvt Ltd.</div>
-          <ul class="exp-desc">
-            <li>Worked on synthesis of aryl phthalides and polyaryl acetates</li>
-            <li>Contributed to research currently under review with American Cancer Research Society</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="exp-item">
-        <div class="exp-date">May–Jun 2021</div>
-        <div class="exp-content">
-          <div class="exp-role">Intern</div>
-          <div class="exp-company">UR Advanced Therapeutics Pvt Ltd.</div>
-          <ul class="exp-desc">
-            <li>Designed 3D models for biological applications and custom lab tools</li>
-            <li>Operated ELEGOO Saturn 2 and CREALITY Ender-5 Pro for resin and filament-based prototyping</li>
-            <li>Supported prototyping for synthetic cornea development</li>
-          </ul>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</div>
-
-<!-- WORK -->
-<div class="page" id="page-work">
-  <div class="page-shell">
-    <div class="page-header">
-      <div class="section-label">What I've built</div>
-      <h1>Projects</h1>
-      <p>Research tools, 3D-printed instruments, and data interfaces built across labs and internships.</p>
-    </div>
-    <div class="work-grid">
-      <div class="work-card">
-        <div class="work-card-num">01</div>
-        <div class="work-tag">Bioinformatics · Data Engineering</div>
-        <h3>BioConnect</h3>
-        <p>A user-facing data mining and report generation interface built for Dr. Vivek Thakur's Systems Biology lab at the University of Hyderabad. Organizes research data into accessible, automated outputs.</p>
-        <div class="stack"><span class="stack-tag">Python</span><span class="stack-tag">MySQL</span><span class="stack-tag">Wix</span></div>
-      </div>
-      <div class="work-card">
-        <div class="work-card-num">02</div>
-        <div class="work-tag">3D Design · Biomedical</div>
-        <h3>3D Lab Instrument Design</h3>
-        <p>Designed 3D-printable models for microfluidics and cell culture tools, including components supporting synthetic cornea development. Managed full modeling-to-slicing workflows.</p>
-        <div class="stack"><span class="stack-tag">Shapr3D</span><span class="stack-tag">Blender</span><span class="stack-tag">Chitubox</span><span class="stack-tag">ELEGOO Saturn 2</span></div>
-      </div>
-      <div class="work-card">
-        <div class="work-card-num">03</div>
-        <div class="work-tag">Computational Biology · R</div>
-        <h3>Cancer Cell Cluster Analysis</h3>
-        <p>Refined and analyzed real animal clinical trials data to identify cancer-causing cells and detect tumor clusters, using advanced single-cell RNA sequencing analysis pipelines.</p>
-        <div class="stack"><span class="stack-tag">R</span><span class="stack-tag">Seurat</span><span class="stack-tag">Bioconductor</span></div>
-      </div>
-      <div class="work-card">
-        <div class="work-card-num">04</div>
-        <div class="work-tag">Organic Chemistry · Published</div>
-        <h3>Stereoselective Synthesis Research</h3>
-        <p>Contributed to research on stereoselective synthesis of L-Arabinose derivatives. Work was co-authored and published in the <em>Tetrahedron</em> journal.</p>
-        <div class="stack"><span class="stack-tag">Organic Chemistry</span><span class="stack-tag">Published Research</span></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- CONTACT -->
-<div class="page" id="page-contact">
-  <div class="page-shell">
-    <div class="page-header">
-      <div class="section-label">Say hello</div>
-      <h1>Get In Touch</h1>
-    </div>
-    <div class="contact-grid">
-      <div class="contact-info">
-        <h3>Let's connect.</h3>
-        <p>Whether you have a research opportunity, a collaboration idea, or just want to talk science and tech — I'd love to hear from you.</p>
-        <div class="contact-item">
-          <div class="contact-icon">✉</div>
-          <span>aramatikushaalreddy@gmail.com</span>
-        </div>
-        <div class="contact-item">
-          <div class="contact-icon">in</div>
-          <span>LinkedIn: Aramati Kushaal Reddy</span>
-        </div>
-        <div class="contact-item">
-          <div class="contact-icon">gh</div>
-          <span>GitHub: aramatikushaal</span>
-        </div>
-        <div class="contact-item">
-          <div class="contact-icon">📍</div>
-          <span>Madison, Wisconsin (UW–Madison)</span>
-        </div>
-      </div>
-      <div>
-        <form class="contact-form" action="https://formspree.io/f/xnjoepwv" method="POST">
-          <div class="form-group">
-            <label for="name">Name</label>
-            <input type="text" id="name" name="name" placeholder="Your name" required>
+    <!-- Leadership + Publications + Education -->
+    <section id="more" class="section">
+      <div class="trio">
+        <div class="trio__col reveal">
+          <div class="section__head section__head--sm">
+            <span class="section__num">05</span><h2>Leadership</h2>
           </div>
-          <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" placeholder="your@email.com" required>
+          <ul class="plain">
+            <li><strong>President &amp; Co-Founder</strong>, Tech Club — Delhi Public School</li>
+            <li><strong>Co-President &amp; Co-Founder</strong>, Business Club — Delhi Public School</li>
+            <li><strong>Literary Secretary</strong> — Prefectural Board</li>
+            <li><strong>USG of Logistics</strong> — DPSHMUN Secretariat</li>
+            <li><strong>Karate Instructor</strong> &amp; Teacher</li>
+          </ul>
+        </div>
+        <div class="trio__col reveal">
+          <div class="section__head section__head--sm">
+            <span class="section__num">06</span><h2>Publications</h2>
           </div>
-          <div class="form-group">
-            <label for="message">Message</label>
-            <textarea id="message" name="message" placeholder="What's on your mind?" required></textarea>
+          <ul class="plain">
+            <li>
+              <strong>Tetrahedron Research Journal</strong> — Co-authored with
+              Prof. Ramu Sreedhar Perali on stereoselective synthesis involving
+              L-Arabinose derivatives.
+            </li>
+            <li>
+              <strong>Amigos Molecular Solutions Group</strong> — Co-authored
+              paper currently in review / modification for publication.
+            </li>
+          </ul>
+        </div>
+        <div class="trio__col reveal">
+          <div class="section__head section__head--sm">
+            <span class="section__num">07</span><h2>Education</h2>
           </div>
-          <button type="submit" class="btn-primary">Send Message</button>
-        </form>
+          <ul class="plain">
+            <li><strong>University of Wisconsin–Madison</strong> — Undergraduate (Freshman)</li>
+            <li><strong>Delhi Public School, Hyderabad</strong> — Class 11–12</li>
+            <li><strong>Wisewoods International School</strong> — Class 9–10</li>
+          </ul>
+        </div>
       </div>
-    </div>
-  </div>
-</div>
+    </section>
 
-<script>
-  function showPage(name) {
-    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-    document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
-    document.getElementById('page-' + name).classList.add('active');
-    const navEl = document.getElementById('nav-' + name);
-    if (navEl) navEl.classList.add('active');
-    window.scrollTo(0, 0);
-  }
+    <!-- Contact -->
+    <section id="contact" class="section section--contact">
+      <div class="contact reveal">
+        <p class="contact__eyebrow">08 — Contact</p>
+        <h2>Let's build something.</h2>
+        <p class="contact__lede">
+          Open to research collaborations, internships, and interesting problems
+          at the edge of biology and software.
+        </p>
+        <a class="btn btn--primary btn--lg" href="mailto:aramatikushaalreddy@gmail.com">
+          aramatikushaalreddy@gmail.com
+        </a>
+        <div class="contact__links">
+          <a href="https://github.com/aramatikushaal" target="_blank" rel="noopener">GitHub</a>
+          <a href="https://www.linkedin.com/in/aramati-kushaal-reddy" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="https://kushaalaramati.github.io" target="_blank" rel="noopener">kushaalaramati.github.io</a>
+        </div>
+      </div>
+    </section>
+  </main>
 
-  // Handle hash routing for direct links
-  function routeFromHash() {
-    const hash = window.location.hash.replace('#', '');
-    const pages = ['home', 'about', 'experience', 'work', 'contact'];
-    if (pages.includes(hash)) showPage(hash);
-  }
-  window.addEventListener('hashchange', routeFromHash);
-  routeFromHash();
-</script>
+  <footer class="footer">
+    <p>© <span id="year"></span> Aramati Kushaal Reddy · Built with HTML, CSS &amp; a little JavaScript.</p>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
